@@ -1,5 +1,6 @@
 package pl.edu.pg.student.testowy;
 
+import static java.lang.Thread.currentThread;
 
 public class Worker implements Runnable {
     Integer result = 0;
@@ -8,6 +9,7 @@ public class Worker implements Runnable {
     }
     @Override
     public void run() {
+        System.out.println("Hello from worker");
         result *= 2;
         //Epic computations;
     }
