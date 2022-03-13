@@ -1,16 +1,17 @@
 package pl.edu.pg.student.testowy;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 public class Resource {
-    private Vector<Integer> queue = new Vector<Integer>();
+    private List<Integer> queue = new ArrayList<>();
     public synchronized Integer take() throws InterruptedException {
         while (queue.isEmpty()) {
-            wait();//Wait, maybe someone will put sth here.
+            wait();
         }
-        int ret = queue.remove(queue.size()-1);
-        return ret;
+        return queue.remove(0);
     }
-    public synchronized void put(Integer value) {
-        this.queue.add(value);
+
+    public synchronized void put(Integer task_int) {
+        this.queue.add(task_int);
         notifyAll();
     }
 }
