@@ -2,8 +2,8 @@ package pl.edu.pg.student.testowy;
 
 
 public class Worker implements Runnable {
-    int result = 0;
-    public Worker(int saver) {
+    Integer result = 0;
+    public Worker(Integer saver) {
         this.result = saver;
     }
     @Override
@@ -12,7 +12,7 @@ public class Worker implements Runnable {
         //Epic computations;
     }
 
-    public int getResult() {
+    public Integer getResult() {
         return result;
     }
 }
