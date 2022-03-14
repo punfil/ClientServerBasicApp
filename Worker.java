@@ -11,15 +11,29 @@ public class Worker implements Runnable {
         this.all_saved_resources = saver;
         this.all_resources = resources;
     }
+    private boolean isPrime(Integer number) {
+        if (number==2){
+            return true;
+        }
+        if (number < 2 || number%2 == 0)
+            return false;
+
+        for (int i = 3; i < number; i+=2)
+        {
+            if (number % i == 0)
+                return false;
+        }
+        return true;
+    }
     @Override
     public void run() {
         while (!Thread.interrupted()) {
             try {
                 Integer resource = all_resources.take();
-                System.out.println(String.format("%s will carry on epic %s quest.", "Liczba:", resource));
+                System.out.println(String.format("The thread is going to check if the number %d is prime", resource));
                 Thread.sleep(5000);
-                System.out.println(String.format("%s has finished the epic quest.", resource));
-                all_saved_resources.put(resource);
+                System.out.println(String.format("The thread has finished to check whether the number %d is prime.", resource));
+                all_saved_resources.put(resource, isPrime(resource));
             } catch (InterruptedException ex) {
                 break;
             }
