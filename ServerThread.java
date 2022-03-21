@@ -13,16 +13,17 @@ public class ServerThread implements Runnable {
 
     @Override
     public void run() {
-        try {
-            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+        try (
+                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+
+             ){
             String inputLine, outputLine;
             Message inputMessage;
             Protocol protocol = new Protocol();
 
             outputLine = protocol.processInput(null); //Ready
             oos.writeObject(outputLine);
-            oos.flush();
 
             n_messages = (Integer) ois.readObject(); //n_messages
             outputLine = protocol.processInput(Integer.toString(n_messages));

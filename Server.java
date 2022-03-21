@@ -5,15 +5,10 @@ import java.io.*;
 
 public class Server {
     public static void main(String[] args) throws IOException {
-        if (args.length != 1) {
-            System.err.println("Arg: <port number>");
-            System.exit(1);
-        }
-        int portNumber = Integer.parseInt(args[0]);
-        boolean listening = true;
+        int portNumber = 4444;
 
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
-            while (listening) {
+            while (true) {
                 new Thread(new ServerThread(serverSocket.accept())).start();
             }
         } catch (IOException e) {

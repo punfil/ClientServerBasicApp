@@ -7,19 +7,15 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) throws IOException {
 
-        if (args.length != 2) {
-            System.err.println(
-                    "Usage: java <host name> <port number>");
-            System.exit(1);
-        }
-
-        String hostName = args[0];
-        int portNumber = Integer.parseInt(args[1]);
+        String hostName = "localhost";
+        int portNumber = 4444;
         Socket kkSocket = new Socket(hostName, portNumber);
         Scanner input = new Scanner(System.in);
-        ObjectOutputStream oos = new ObjectOutputStream(kkSocket.getOutputStream());
-        ObjectInputStream ois = new ObjectInputStream(kkSocket.getInputStream());
-        try {
+
+        try (
+                ObjectOutputStream oos = new ObjectOutputStream(kkSocket.getOutputStream());
+                ObjectInputStream ois = new ObjectInputStream(kkSocket.getInputStream());
+             ){
             String fromServer = (String) ois.readObject(); //Ready
             System.out.println("Server: " + fromServer);
 
