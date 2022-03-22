@@ -26,7 +26,8 @@ public class Client {
             System.out.println("Server: " + fromServer);
 
             for (int i=0;i<n_messages;i++){ //Sending messages
-                oos.writeObject(new Message(i, "I love you"));
+                System.out.printf("Enter %d new message text", i);
+                oos.writeObject(new Message(i, input.nextLine()));
                 fromServer = (String) ois.readObject();
                 System.out.println("Server: " + fromServer);
             }
