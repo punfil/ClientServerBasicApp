@@ -6,9 +6,9 @@ import java.io.*;
 public class Server {
     public static void main(String[] args) throws IOException {
         int portNumber = 4444;
-
+        boolean listening = true;
         try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
-            while (true) {
+            while (listening) {
                 new Thread(new ServerThread(serverSocket.accept())).start();
             }
         } catch (IOException e) {

@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) throws IOException {
-
         String hostName = "localhost";
         int portNumber = 4444;
         Socket kkSocket = new Socket(hostName, portNumber);
